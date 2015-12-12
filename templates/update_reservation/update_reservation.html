@@ -1,0 +1,42 @@
+{% extends "index/index.html" %}
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="/static/css/style.css">
+{% endblock %}
+
+{% block content %}
+
+    <div class="container user-index-padding">
+        {% if error %}
+            <h5 style="color:red;">Error: {{ error }} </h5>
+        {% endif %}
+        <form action="" method="post" name="deleteReservation">
+                {{ form.hidden_tag }}
+                <div class="form-group ">
+
+                </div>
+            <div class="row">
+                <h4 class="col-md-3 text-left">Update Reservation:</h4>
+            </div>
+        <table class="table table-striped table-bordered table-condensed">
+            <tr>
+                <th>ReservationID</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Location</th>
+                <th>Choose Reservation</th>
+            </tr>
+            {% for reservation in reservation_list %}
+                <tr>
+                    <td>{{ reservation.reservation_id }}</td>
+                    <td>{{ reservation.start_date }}</td>
+                    <td>{{ reservation.end_date }}</td>
+                    <td>{{ reservation.hotel_location }}</td>
+                    <td>{{ form.reservation(value=reservation.reservation_id) }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+            {{ form.next_page(class_="btn btn-default right-align") }}
+        </form>
+    </div>
+{% endblock %}

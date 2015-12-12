@@ -1,0 +1,59 @@
+{% extends "index/index.html" %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+
+{% block content %}
+    {% if current_user.is_authenticated %}
+    <div ng-controller="UserIndexCtrl" class="container user-index-padding">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="btn-group-vertical">
+                    <a role="button" class="btn btn-primary" href={{ url_for('reservation_home_page_app.create_reservation') }}>Make Reservation</a>
+                    <a role="button" class="btn btn-primary" href={{ url_for('reservation_home_page_app.update_reservation') }}>Update a Reservation</a>
+                    <a role="button" class="btn btn-primary" href={{ url_for('reservation_home_page_app.delete_reservation') }}>Cancel a Reservation</a>
+                    <a role="button" class="btn btn-primary" href={{ url_for('reservation_home_page_app.provide_feedback') }}>Provide Feedback</a>
+                    <a role="button" class="btn btn-primary" href={{ url_for('reservation_home_page_app.view_reviews_choose_location') }}>View Feedback</a>
+                </div>
+            </div>
+            <div class="col-md-8">
+                 <div class="jumbotron">
+                    <div class="row">
+                     <h2>Your Past, Current, and Future Reservations</h2>
+                         <table class="table table-striped table-bordered table-condensed">
+                            <tr>
+                                <th>ReservationID</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Location</th>
+                                <th>Total Cost</th>
+                            </tr>
+                            {% for reservation in reservation_list %}
+                                {% if reservation['start_date'] <= today and reservation['end_date'] >= today %}
+                                    <tr style="background:lightgreen;">
+                                {% elif reservation['start_date'] < today and reservation['end_date'] < today %}
+                                    <tr style="background:indianred;">
+                                {% else %}
+                                    <tr>
+                                {% endif %}
+                                        <td><a style="color:darkblue;" href={{ url_for('reservation_home_page_app.view_reservation', reservation_id=reservation.reservation_id) }}>{{ reservation.reservation_id }}</a></td>
+                                        <td>{{ reservation['start_date']}}</td>
+                                        <td>{{ reservation['end_date'] }}</td>
+                                        <td>{{ reservation['location'] }}</td>
+                                        <td>${{ reservation['total_cost'] }}</td>
+                                    </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                 </div>
+            <p>The current date and time is: {{ moment().format('MMMM Do YYYY, h:mm:ss a') }}.</p>
+            <p>Logged in as {{ current_user.username }}</p>
+            </div>
+
+
+        </div>
+    </div>
+
+    {% endif %}
+
+{% endblock %}

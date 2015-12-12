@@ -1,0 +1,33 @@
+{% extends "index/index.html" %}
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="/static/css/style.css">
+{% endblock %}
+
+{% block content %}
+
+    <div class="container user-index-padding">
+    <form action="" method="post" name="deleteReservation">
+        {{ form.hidden_tag }}
+        <div class="row">
+            {% if error %}
+            <h5 style="color:red;">Error: {{ error }} </h5>
+            {% endif %}
+            <div class="form-group row">
+                <h4 class="col-md-2 text-left">Select Credit Card:</h4>
+                <div class="text-left col-md-2">
+                    {{ form.credit_card(class_="form-control") }}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group row">
+                <div class="text-left col-md-2">
+                    {{ form.delete_card(class_="btn btn-default right-align") }}
+                </div>
+            </div>
+        </div>
+
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "index/index.html" %}
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="/static/css/style.css">
+{% endblock %}
+
+{% block content %}
+
+    <div class="container user-index-padding">
+        {% if error %}
+            <h5 style="color:red;">Error: {{ error }} </h5>
+        {% endif %}
+        <form action="" method="post" name="deleteReservation">
+                {{ form.hidden_tag }}
+        <h3>New Dates: {{ st_date }} through {{ e_date }}</h3>
+        <table class="table table-striped table-bordered table-condensed">
+                <tr>
+                    <th>Room Number</th>
+                    <th>Room Category</th>
+                    <th># Persons Allowed</th>
+                    <th>Cost Per Day</th>
+                    <th>Cost of Extra Bed Per Day</th>
+                    <th>Extra Bed?</th>
+                </tr>
+                {% for room in available_rooms %}
+                    <tr>
+                        <td>{{ room['room_number'] }}</td>
+                        <td>{{ room['room_category'] }}</td>
+                        <td>{{ room['number_people'] }}</td>
+                        <td>{{ room['cost_per_day'] }}</td>
+                        <td>{{ room['cost_extra_bed'] }}</td>
+                        {% if room['extra_bed'] == 1 %}
+                            <td>Yes</td>
+                        {% else %}
+                            <td>No</td>
+                        {% endif %}
+
+                    </tr>
+                {% endfor %}
+            </table>
+            <h4>Total Cost: ${{ total_cost }}</h4>
+            {{ form.confirm(class_="btn btn-default right-align") }}
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "index/index.html" %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+
+{% block content %}
+    {% if current_user.is_authenticated %}
+    <div class="container user-index-padding">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="btn-group-vertical">
+                    <a role="button" class="btn btn-primary" href={{ url_for('admin_app.view_reservation_report') }}>View Reservation Report</a>
+                    <a role="button" class="btn btn-primary" href={{ url_for('admin_app.view_popular_category_report') }}>View Popular Room Category Report</a>
+                    <a role="button" class="btn btn-primary" href={{ url_for('admin_app.view_revenue_report') }}>View Revenue Report</a>
+                </div>
+            </div>
+            <div class="col-md-8">
+                 <div class="jumbotron">
+
+                 </div>
+            </div>
+        </div>
+    <p>Logged in as {{ current_user.username }}</p>
+    </div>
+
+
+    {% endif %}
+
+{% endblock %}

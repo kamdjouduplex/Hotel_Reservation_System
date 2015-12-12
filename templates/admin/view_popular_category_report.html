@@ -1,0 +1,36 @@
+{% extends "admin/admin_index.html" %}
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="/static/css/style.css">
+{% endblock %}
+
+{% block content %}
+
+    <div class="container user-index-padding">
+        {% if error %}
+            <h5 style="color:red;">Error: {{ error }} </h5>
+        {% endif %}
+        <h2>Popular Room Categories Report</h2>
+        <table class="table table-striped table-bordered table-condensed">
+                <tr>
+                    <th>Month</th>
+                    <th>Category</th>
+                    <th>Location</th>
+                    <th>Number of Reservations</th>
+                </tr>
+        {% if report %}
+                {% for r in report %}
+                    {% if loop.index == 1 %}
+                    <td>{{ r['month'] }}</td>
+                    {% else %}
+                    <td></td>
+                    {% endif %}
+                    <td>{{ r['category'] }}</td>
+                    <td>{{ r['location'] }}</td>
+                    <td>{{ r['num_reservations'] }}</td>
+                    </tr>
+                {% endfor %}
+        {% endif %}
+            </table>
+    </div>
+{% endblock %}

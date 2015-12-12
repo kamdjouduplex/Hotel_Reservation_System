@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      {% block head %}
+        <meta charset="utf-8"/>
+        <title>Hotel Reservation</title>
+        <link type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}" rel="stylesheet">
+          <link type="text/css" href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+          {{ moment.include_jquery() }}
+        {{ moment.include_moment() }}
+      {% endblock %}
+  </head>
+
+  <body>
+
+    <div class="container">
+      <div class="header">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                      <a class="navbar-brand" href="/">Hotel Reservation</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li role="presentation" class="active"><a href="/">Home</a></li>
+                          {% if current_user.is_authenticated %}
+                            <li role="presentation"><a href="{{ url_for('user_page_app.logout') }}">Log Out</a></li>
+                          {% else %}
+                              <li role="presentation"><a href="{{ url_for('user_page_app.login') }}">Log In</a></li>
+                          {% endif %}
+                      </ul>
+                </div>
+            </div>
+
+        </nav>
+      </div>
+{% block content %}{% endblock %}
+
+
+    </div>
+  </body>
+</html>

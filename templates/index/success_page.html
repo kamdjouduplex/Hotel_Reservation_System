@@ -1,0 +1,14 @@
+{% extends "index/index.html" %}
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="/static/css/style.css">
+{% endblock %}
+
+{% block content %}
+
+    <div class="container user-index-padding">
+        {% if message %}
+            <h3 style="color:green;">{{ message }} </h3>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,25 @@
+.full-width-div {
+    position: absolute;
+    width: 100%;
+    left: 0;
+}
+
+.user-index-padding {
+    padding-top: 70px;
+}
+
+.error-message {
+    color:red;
+}
+
+.navbar-right {
+   padding-right: 15px;
+}
+
+.footer {
+  position: relative;
+  margin-top: -5px; /* negative value of footer height */
+  height: 150px;
+  clear:both;
+  padding-top:20px;
+}

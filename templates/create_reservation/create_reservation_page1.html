@@ -1,0 +1,37 @@
+{% extends "index/index.html" %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+
+{% block content %}
+    <div class="jumbotron">
+    {% if error %}
+        <h5 style="color:red;">Error: {{ error }} </h5>
+    {% endif %}
+    <h1>Search Rooms</h1>
+        <form action="" method="post" name="createReservation">
+                {{ form.hidden_tag }}
+                <div class="form-group ">
+
+                </div>
+                <div class="form-group row">
+                    <h4 class="col-md-2 text-left">Location</h4>
+                    <div class="text-left col-md-6">
+                        {{ form.location(class_="form-control") }}
+                    </div>
+                </div>
+            <div class="row">
+                <div class="form-group text-left col-md-6">
+                    <h4>Start Date</h4>
+                        {{ form.stdt(class='datepicker') }}
+                </div>
+                <div class="form-group text-left col-md-6">
+                    <h4>Checkout Date</h4>
+                        {{ form.enddt(class='datepicker') }}
+                </div>
+            </div>
+                {{ form.search(class_="btn btn-default right-align") }}
+        </form>
+    </div>
+
+{% endblock %}

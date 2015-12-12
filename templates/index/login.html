@@ -1,0 +1,30 @@
+{% extends "index/index.html" %}
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="/static/css/signin.css">
+{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+            <form class="form-signin" action="" method="post" name="login">
+                {{ form.hidden_tag }}
+                {% if error %}
+                    <h5 style="color:red;">Error: {{ error }} </h5>
+                {% endif %}
+                <h2 class="form-signin-heading">Log in</h2>
+                  <div class="form-group">
+                        {{ form.username(class_="form-control", placeholder="Username") }}
+                  </div>
+                <div class="form-group">
+                    {{ form.password(class_="form-control", placeholder="Password") }}
+                </div>
+                    <p>{{ form.remember_me }} Remember Me</p>
+                {{ form.sign_in(class_="btn btn-default") }}
+                <div class="form-group ">
+                    <a href="{{ url_for('user_page_app.signup') }}">New User? Sign up here!</a>
+                </div>
+          </form>
+
+      </div>
+{% endblock %}

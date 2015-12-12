@@ -1,0 +1,48 @@
+{% extends "index/index.html" %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+
+{% block content %}
+    <div class="jumbotron">
+    <h1>Add Card</h1>
+    <form action="" method="post" name="createReservation2">
+        {% if error %}
+            <h5 style="color:red;">Error: {{ error }} </h5>
+        {% endif %}
+        {{ form.hidden_tag }}
+
+        <div class="form-group row">
+            <h4 class="col-md-2 text-left">Name on Card</h4>
+            <div class="text-left col-md-6">
+                {{ form.name(class_="form-control") }}
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <h4 class="col-md-2 text-left">Card Number</h4>
+            <div class="text-left col-md-6">
+                {{ form.card_number(class_="form-control") }}
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <h4 class="col-md-2 text-left">Expiration Date</h4>
+            <div class="text-left col-md-6">
+                {{ form.expiration_date(class_="form-control") }}
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <h4 class="col-md-2 text-left">CVV</h4>
+            <div class="text-left col-md-6">
+                {{ form.cvv(class_="form-control") }}
+            </div>
+        </div>
+
+
+        {{ form.save(class_="btn btn-default right-align") }}
+        </form>
+    </div>
+
+{% endblock %}

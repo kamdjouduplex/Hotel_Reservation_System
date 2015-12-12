@@ -1,0 +1,40 @@
+{% extends "index/index.html" %}
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="/static/css/style.css">
+{% endblock %}
+
+{% block content %}
+
+    <div class="container user-index-padding">
+        {% if error %}
+            <h5 style="color:red;">Error: {{ error }} </h5>
+        {% endif %}
+        <form action="" method="post" name="provide_feedback">
+            {{ form.hidden_tag }}
+            <div class="form-group ">
+
+            </div>
+            <div class="form-group row">
+                <h4 class="col-md-2 text-left">Location:</h4>
+                <div class="text-left col-md-3">
+                    {{ form.location(class_="form-control") }}
+                </div>
+            </div>
+            <div class="form-group row">
+                <h4 class="col-md-2 text-left">Rating:</h4>
+                <div class="text-left col-md-3">
+                    {{ form.rating(class_="form-control") }}
+                </div>
+            </div>
+            <div class="form-group row">
+                <h4 class="col-md-2 text-left">Rating:</h4>
+                <div class="text-left col-md-3">
+                    {{ form.comment(class_="form-control") }}
+                </div>
+            </div>
+
+            {{ form.submit(class_="btn btn-default right-align") }}
+        </form>
+    </div>
+{% endblock %}
